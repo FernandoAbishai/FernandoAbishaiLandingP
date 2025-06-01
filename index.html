@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fernando Abishai - Contenido educativo sobre Inteligencia Artificial, Desarrollo, Tech y Crypto. Encuentra recursos, tutoriales y asesoría.">
+    <meta property="og:title" content="Fernando Abishai - Contenido Tech & IA">
+    <meta property="og:description" content="Explora el universo de la IA, Desarrollo y Tech con contenido práctico y actualizado.">
+    <meta property="og:image" content="https://placehold.co/1200x630/3b82f6/FFFFFF?text=Fernando+Abishai">
+    <meta property="og:url" content="https://fernandoabishai.com">
+    <meta property="og:type" content="website">
+    <title>Fernando Abishai - Contenido Tech & IA</title>
+    <link rel="icon" href="https://placehold.co/32x32/3b82f6/FFFFFF?text=FA" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+            color: #f3f4f6; /* text-gray-100 */
+        }
+        .hero-bg {
+            background-image: url('https://placehold.co/1200x600/000000/FFFFFF?text=Innovacion+AI+y+Desarrollo'); /* Imagen de fondo más específica */
+            background-size: cover;
+            background-position: center;
+        }
+        .card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+        }
+        .tag {
+            background-color: #374151; /* bg-gray-700 */
+            color: #d1d5db; /* text-gray-300 */
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 2rem; /* mb-8 */
+            text-align: center;
+            color: #60a5fa; /* text-blue-400 */
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            font-weight: 600; /* font-semibold */
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .btn-primary {
+            background-color: #3b82f6; /* bg-blue-500 */
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb; /* bg-blue-600 */
+        }
+        .btn-secondary {
+            background-color: #4b5563; /* bg-gray-600 */
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #374151; /* bg-gray-700 */
+        }
+        .video-placeholder, .resource-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #374151; /* bg-gray-700 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .video-placeholder p, .resource-placeholder p {
+            color: #9ca3af; /* text-gray-400 */
+        }
+        /* Estilos para el modal de mensaje */
+        .modal {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: #1f2937; /* bg-gray-800 */
+            padding: 2rem;
+            border-radius: 0.5rem; /* rounded-lg */
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .modal-content h3 {
+            font-size: 1.5rem; /* text-2xl */
+            margin-bottom: 1rem;
+            color: #60a5fa; /* text-blue-400 */
+        }
+        .modal-content p {
+            margin-bottom: 1.5rem;
+            color: #d1d5db; /* text-gray-300 */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="bg-gray-800 p-4 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#inicio" class="text-2xl font-bold text-blue-400">Fernando Abishai</a>
+            <div class="hidden md:flex space-x-2">
+                <a href="#inicio" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
+                <a href="#videos" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Videos</a>
+                <a href="#blog" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Blog</a>
+                <a href="#servicios" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Servicios</a>
+                <a href="#recursos" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Recursos</a>
+                <a href="#sobre-mi" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Sobre Mí</a>
+                <a href="#contacto" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
+            </div>
+            <button id="mobileMenuBtn" class="md:hidden text-gray-300 hover:text-blue-400 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            <div id="mobileMenu" class="hidden absolute top-16 left-0 w-full bg-gray-800 p-4 shadow-lg md:hidden z-50">
+                <a href="#inicio" class="block text-gray-300 hover:text-blue-400 py-2">Inicio</a>
+                <a href="#videos" class="block text-gray-300 hover:text-blue-400 py-2">Videos</a>
+                <a href="#blog" class="block text-gray-300 hover:text-blue-400 py-2">Blog</a>
+                <a href="#servicios" class="block text-gray-300 hover:text-blue-400 py-2">Servicios</a>
+                <a href="#recursos" class="block text-gray-300 hover:text-blue-400 py-2">Recursos</a>
+                <a href="#sobre-mi" class="block text-gray-300 hover:text-blue-400 py-2">Sobre Mí</a>
+                <a href="#contacto" class="block text-gray-300 hover:text-blue-400 py-2">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="inicio" class="hero-bg text-white text-center py-20 md:py-32">
+        <div class="container mx-auto bg-black bg-opacity-60 p-8 rounded-xl">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Fernando Abishai: Tu Guía en IA y Tecnología</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Explora el universo de la Inteligencia Artificial, Herramientas de Desarrollo, Tech, Crypto y más. Contenido práctico y al día.</p>
+            <a href="#videos" class="btn btn-primary text-lg mr-2">Ver Videos</a>
+            <a href="#servicios" class="btn btn-secondary text-lg">Mis Servicios</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 md:p-12">
+
+        <section id="videos" class="py-12">
+            <h2 class="section-title">Últimos Videos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <div class="video-placeholder">
+                        <img src="https://placehold.co/400x225/3b82f6/FFFFFF?text=Video+IA+Explicada" alt="Miniatura Video IA" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/FFFFFF?text=Error+Carga';">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Desmitificando la Inteligencia Artificial Generativa</h3>
+                        <p class="text-gray-400 mb-4 text-sm">Entiende cómo funciona la IA que crea imágenes, texto y más. ¡Casos de uso prácticos!</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Inteligencia Artificial</span>
+                            <span class="tag">Tech</span>
+                        </div>
+                        <a href="https://youtube.com/watch?v=sample-video-id-1" target="_blank" rel="noopener" class="btn btn-secondary w-full text-center">Ver en YouTube</a> </div>
+                </div>
+                <div class="card">
+                     <div class="video-placeholder">
+                        <img src="https://placehold.co/400x225/10b981/FFFFFF?text=Dev+Tools+Top" alt="Miniatura Video Dev Tools" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/FFFFFF?text=Error+Carga';">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Top 5 Herramientas Dev que Ahorran Horas</h3>
+                        <p class="text-gray-400 mb-4 text-sm">Optimiza tu flujo de trabajo con estas herramientas esenciales para desarrolladores en 2025.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Dev Tools</span>
+                            <span class="tag">Productividad</span>
+                        </div>
+                        <a href="https://youtube.com/watch?v=sample-video-id-1" target="_blank" rel="noopener" class="btn btn-secondary w-full text-center">Ver en YouTube</a> </div>
+                </div>
+                <div class="card">
+                    <div class="video-placeholder">
+                        <img src="https://placehold.co/400x225/f59e0b/FFFFFF?text=Intro+Crypto+Segura" alt="Miniatura Video Crypto" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/FFFFFF?text=Error+Carga';">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Crypto para Principiantes: Inversión y Seguridad</h3>
+                        <p class="text-gray-400 mb-4 text-sm">Una guía clara para entender las bases de las criptomonedas y cómo navegar este espacio de forma segura.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Crypto</span>
+                            <span class="tag">Fintech</span>
+                        </div>
+                        <a href="https://youtube.com/watch?v=sample-video-id-1" target="_blank" rel="noopener" class="btn btn-secondary w-full text-center">Ver en YouTube</a> </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="py-12">
+            <h2 class="section-title">Artículos del Blog</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6">
+                    <img src="https://placehold.co/600x300/374151/9CA3AF?text=Articulo+Futuro+IA" alt="Imagen Artículo Futuro IA" class="w-full h-48 object-cover rounded-md mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x300/1f2937/FFFFFF?text=Error+Imagen';">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-300">El Rol de la IA en el Desarrollo de Software del Futuro</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Cómo la inteligencia artificial está transformando las herramientas y procesos para crear software.</p>
+                    <a href="#" class="btn btn-secondary">Leer Más</a>
+                </div>
+                <div class="card p-6">
+                    <img src="https://placehold.co/600x300/374151/9CA3AF?text=Articulo+Estrategia+Contenido" alt="Imagen Artículo Estrategia Contenido" class="w-full h-48 object-cover rounded-md mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x300/1f2937/FFFFFF?text=Error+Imagen';">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-300">Estrategias para Monetizar tu Contenido Tech (Afiliados y Más)</h3>
+                    <p class="text-gray-400 mb-4 text-sm">Explora diversas formas de generar ingresos con tu conocimiento técnico, incluyendo marketing de afiliados.</p>
+                    <a href="#" class="btn btn-secondary">Leer Más</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="py-12 bg-gray-800 rounded-xl p-8 md:p-12 my-12">
+            <h2 class="section-title !text-center !mb-6">Servicios de Consultoría</h2>
+            <p class="text-center text-gray-300 mb-8 max-w-xl mx-auto">¿Necesitas ayuda experta para tus proyectos de IA, optimizar tus herramientas de desarrollo o entender mejor el mundo crypto? Estoy aquí para ayudarte.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                <div class="card p-6">
+                    <h3 class="text-2xl font-semibold text-blue-300 mb-3">Consultoría en Inteligencia Artificial</h3>
+                    <p class="text-gray-400 mb-4">Asesoramiento para implementar soluciones de IA, elegir las herramientas adecuadas o entender el potencial de la IA para tu negocio o proyecto.</p>
+                    <a href="#contacto" class="btn btn-primary">Solicitar Información</a>
+                </div>
+                <div class="card p-6">
+                    <h3 class="text-2xl font-semibold text-blue-300 mb-3">Asesoría en Dev Tools & Tech</h3>
+                    <p class="text-gray-400 mb-4">Optimización de flujos de trabajo, selección de stack tecnológico, y resolución de dudas sobre herramientas de desarrollo y nuevas tecnologías.</p>
+                    <a href="#contacto" class="btn btn-primary">Solicitar Información</a>
+                </div>
+            </div>
+            <p class="text-center text-gray-400 mt-8">Para servicios personalizados o charlas, por favor <a href="#contacto" class="text-blue-400 hover:underline">ponte en contacto</a>.</p>
+        </section>
+
+        <section id="recursos" class="py-12">
+            <h2 class="section-title">Recursos Recomendados</h2>
+            <p class="text-center text-gray-300 mb-10 max-w-xl mx-auto">Aquí encontrarás herramientas, cursos, y productos (propios o de afiliados) que te ayudarán a potenciar tus habilidades y proyectos en tech.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <div class="resource-placeholder">
+                         <img src="https://placehold.co/400x225/8b5cf6/FFFFFF?text=Herramienta+IA+Pro" alt="Herramienta IA" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/FFFFFF?text=Error+Carga';">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Nombre Herramienta AI PRO (Afiliado)</h3>
+                        <p class="text-gray-400 mb-4 text-sm">Una potente plataforma de IA para [beneficio clave]. Ideal para [audiencia objetivo].</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">IA Tools</span> <span class="tag">Afiliado</span>
+                        </div>
+                        <a href="#" target="_blank" class="btn btn-primary w-full text-center">Descubre Más</a> </div>
+                </div>
+                <div class="card">
+                    <div class="resource-placeholder">
+                        <img src="https://placehold.co/400x225/ec4899/FFFFFF?text=eBook+DevOps" alt="eBook DevOps" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/FFFFFF?text=Error+Carga';">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-300">eBook: Guía Práctica de DevOps</h3>
+                        <p class="text-gray-400 mb-4 text-sm">Mi guía completa para implementar prácticas DevOps y optimizar tu ciclo de desarrollo.</p>
+                         <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">DevOps</span> <span class="tag">eBook</span>
+                        </div>
+                        <a href="#" class="btn btn-primary w-full text-center">Comprar Guía</a> </div>
+                </div>
+                <div class="card">
+                     <div class="resource-placeholder">
+                        <img src="https://placehold.co/400x225/f97316/FFFFFF?text=Curso+Crypto+Avanzado" alt="Curso Crypto Avanzado" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/FFFFFF?text=Error+Carga';">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Curso: Inversiones Crypto Avanzadas (Afiliado)</h3>
+                        <p class="text-gray-400 mb-4 text-sm">Aprende estrategias de inversión y análisis técnico en el mundo crypto con este curso.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Crypto</span> <span class="tag">Curso</span> <span class="tag">Afiliado</span>
+                        </div>
+                        <a href="#" target="_blank" class="btn btn-primary w-full text-center">Ver Curso</a> </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre-mi" class="py-12 bg-gray-800 rounded-xl p-8 md:p-12 my-12">
+            <h2 class="section-title !text-center !mb-6">Sobre Fernando Abishai</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <img src="https://placehold.co/300x300/60a5fa/FFFFFF?text=Fernando+Abishai" alt="Foto de Fernando Abishai" class="w-48 h-48 md:w-60 md:h-60 rounded-full object-cover shadow-lg mx-auto md:mx-0" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1f2937/FFFFFF?text=Error+Imagen';">
+                <div class="text-center md:text-left">
+                    <p class="text-lg text-gray-300 mb-4">
+                        ¡Hola! Soy Fernando Abishai, creador de contenido y entusiasta de la tecnología, especializado en Inteligencia Artificial, Herramientas de Desarrollo, y el ecosistema Crypto.
+                    </p>
+                    <p class="text-lg text-gray-300">
+                        Mi misión es simplificar lo complejo y mostrarte cómo la tecnología puede potenciar tus ideas y proyectos. A través de videos, artículos y recursos, comparto mi conocimiento y pasión por la innovación.
+                        ¡Gracias por acompañarme en esta aventura digital!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="py-12">
+            <h2 class="section-title">Hablemos</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-lg mx-auto">
+                Conéctate conmigo en redes sociales o envíame un mensaje si tienes preguntas, propuestas de colaboración o interés en mis servicios.
+            </p>
+            <div class="flex justify-center space-x-6 mb-12">
+                <a href="#" target="_blank" title="YouTube Fernando Abishai" class="text-gray-400 hover:text-red-500 transition-colors"> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.701V8.115l6.063 3.785-6.063 3.985z"/></svg>
+                    <span class="sr-only">YouTube</span>
+                </a>
+                <a href="#" target="_blank" title="Twitter de Fernando Abishai" class="text-gray-400 hover:text-blue-400 transition-colors"> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                    <span class="sr-only">Twitter</span>
+                </a>
+                 <a href="#" target="_blank" title="LinkedIn de Fernando Abishai" class="text-gray-400 hover:text-blue-600 transition-colors"> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+                    <span class="sr-only">LinkedIn</span>
+                </a>
+                 </div>
+
+            <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-xl shadow-xl">
+                <h3 class="text-2xl font-semibold text-blue-300 mb-6 text-center">Envíame un Mensaje Directo</h3>
+                <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
+                    <input type="hidden" name="form-name" value="contact">
+                    <div class="hidden">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </div>
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-300 mb-1">Nombre</label>
+                        <input type="text" id="name" name="name" required class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-gray-100" placeholder="Tu Nombre Completo">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-300 mb-1">Email</label>
+                        <input type="email" id="email" name="email" required class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-gray-100" placeholder="tu@email.com">
+                    </div>
+                    <div class="mb-4">
+                        <label for="subject" class="block text-gray-300 mb-1">Asunto</label>
+                        <select id="subject" name="subject" class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-gray-100">
+                            <option value="consulta_general">Consulta General</option>
+                            <option value="servicios_ia">Interés en Servicios de IA</option>
+                            <option value="servicios_dev">Interés en Asesoría Dev</option>
+                            <option value="colaboracion">Propuesta de Colaboración</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-300 mb-1">Mensaje</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full p-3 rounded-md bg-gray-700 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-gray-100" placeholder="Escribe tu mensaje aquí..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-center p-6 mt-12 border-t border-gray-700">
+        <p class="text-gray-400">&copy; <span id="currentYear"></span> Fernando Abishai. Todos los derechos reservados.</p>
+        <p class="text-gray-500 text-sm">Página creada para impulsar tu presencia digital.</p>
+    </footer>
+
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle"></h3>
+            <p id="modalMessage"></p>
+            <button id="closeModalBtn" class="btn btn-primary">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const contactForm = document.getElementById('contactForm');
+        const messageModal = document.getElementById('messageModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const subject = document.getElementById('subject').value;
+                // Prepare form data for Netlify
+                const formData = new FormData(contactForm);
+                
+                // Show the modal message to the user
+                showModal('¡Mensaje Enviado!', `Gracias por tu mensaje, ${name}. Hemos recibido tu consulta sobre "${subject}". Te contactaré pronto.`);
+                
+                // Submit the form to Netlify after showing the modal
+                fetch('/', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(() => {
+                    // Reset the form after successful submission
+                    contactForm.reset();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    showModal('Error', 'Hubo un problema al enviar tu mensaje. Por favor, intenta nuevamente.');
+                });
+            });
+        }
+
+        function showModal(title, message) {
+            if (modalTitle && modalMessage && messageModal) {
+                modalTitle.textContent = title;
+                modalMessage.textContent = message;
+                messageModal.classList.add('active');
+            }
+        }
+
+        if (closeModalBtn && messageModal) {
+            closeModalBtn.addEventListener('click', function() {
+                messageModal.classList.remove('active');
+            });
+        }
+        
+        if (messageModal) {
+            messageModal.addEventListener('click', function(event) {
+                if (event.target === messageModal) { // Solo cierra si se hace clic en el fondo del modal
+                    messageModal.classList.remove('active');
+                }
+            });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const offset = 80; // Ajusta este valor según la altura de tu navbar fija
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = targetElement.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                         top: offsetPosition,
+                         behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on links
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+        
+        // Add lazy loading to images
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.setAttribute('loading', 'lazy');
+            });
+        });
+    </script>
+</body>
+</html>
