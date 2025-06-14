@@ -1,0 +1,72 @@
+/* General Enhancements */
+body {
+    scroll-behavior: smooth;
+}
+
+/* Glassmorphism Navbar */
+nav.sticky {
+    background-color: rgba(15, 10, 26, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Active Navigation Link Highlighting */
+.active-nav-link {
+    color: #f97316 !important; /* Use a distinct color */
+    font-weight: 700;
+    transform: scale(1.05);
+}
+
+nav a {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Enhanced Button Hover Effects */
+.btn-primary:hover {
+    box-shadow: 0 10px 25px -5px rgba(214, 51, 108, 0.5), 0 0 15px rgba(249, 115, 22, 0.3);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 10px 20px rgba(139, 92, 246, 0.25);
+}
+
+/* Scroll-in Animations */
+.fade-in-initial {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Interactive Social Media Icons */
+#contacto .flex.justify-center a {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#contacto .flex.justify-center a:hover {
+    transform: scale(1.2);
+}
+
+/* Clearer Form Input Focus */
+form input:focus, form textarea:focus, form select:focus {
+    border-color: var(--color-pink-500) !important;
+    box-shadow: 0 0 0 3px rgba(214, 51, 108, 0.4);
+}
+
+/* Section Dividers (Example - subtle wave) */
+.section-divider {
+    position: relative;
+    height: 100px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,50 C480,100 960,0 1440,50 L1440,100 L0,100 Z" style="fill: %231a1033; opacity: 0.5;"></path></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: -1px;
+    margin-bottom: -1px;
+}
+
