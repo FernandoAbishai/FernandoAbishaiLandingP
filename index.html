@@ -408,7 +408,7 @@
 
             <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-xl shadow-xl">
                 <h3 class="text-2xl font-semibold text-blue-300 mb-6 text-center">Envíame un Mensaje Directo</h3>
-                <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
+                <form id="contactForm" name="contact" method="POST" action="/success.html">
                     <input type="hidden" name="form-name" value="contact">
                     <div class="hidden">
                         <label>Don't fill this out if you're human: <input name="bot-field" /></label>
@@ -468,13 +468,13 @@
                 e.preventDefault();
                 const name = document.getElementById('name').value;
                 const subject = document.getElementById('subject').value;
-                // Prepare form data for Netlify
+                // Prepare form data for submission
                 const formData = new FormData(contactForm);
                 
                 // Show the modal message to the user
                 showModal('¡Mensaje Enviado!', `Gracias por tu mensaje, ${name}. Hemos recibido tu consulta sobre "${subject}". Te contactaré pronto.`);
                 
-                // Submit the form to Netlify after showing the modal
+                // Submit the form after showing the modal
                 fetch('/', {
                     method: 'POST',
                     body: formData
