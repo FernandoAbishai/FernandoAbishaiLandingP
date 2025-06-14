@@ -251,47 +251,8 @@
 
         <section id="videos" class="py-12">
             <h2 class="section-title">Últimos Videos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card">
-                    <div class="video-placeholder">
-                        <img src="https://placehold.co/400x225/3b82f6/FFFFFF?text=Video+IA+Explicada" alt="Miniatura Video IA" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/FFFFFF?text=Error+Carga';">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Desmitificando la Inteligencia Artificial Generativa</h3>
-                        <p class="text-gray-400 mb-4 text-sm">Entiende cómo funciona la IA que crea imágenes, texto y más. ¡Casos de uso prácticos!</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">Inteligencia Artificial</span>
-                            <span class="tag">Tech</span>
-                        </div>
-                        <a href="https://youtube.com/watch?v=sample-video-id-1" target="_blank" rel="noopener" class="btn btn-secondary w-full text-center">Ver en YouTube</a> </div>
-                </div>
-                <div class="card">
-                     <div class="video-placeholder">
-                        <img src="https://placehold.co/400x225/10b981/FFFFFF?text=Dev+Tools+Top" alt="Miniatura Video Dev Tools" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/FFFFFF?text=Error+Carga';">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Top 5 Herramientas Dev que Ahorran Horas</h3>
-                        <p class="text-gray-400 mb-4 text-sm">Optimiza tu flujo de trabajo con estas herramientas esenciales para desarrolladores en 2025.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">Dev Tools</span>
-                            <span class="tag">Productividad</span>
-                        </div>
-                        <a href="https://youtube.com/watch?v=sample-video-id-1" target="_blank" rel="noopener" class="btn btn-secondary w-full text-center">Ver en YouTube</a> </div>
-                </div>
-                <div class="card">
-                    <div class="video-placeholder">
-                        <img src="https://placehold.co/400x225/f59e0b/FFFFFF?text=Intro+Crypto+Segura" alt="Miniatura Video Crypto" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x225/1f2937/FFFFFF?text=Error+Carga';">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-blue-300">Crypto para Principiantes: Inversión y Seguridad</h3>
-                        <p class="text-gray-400 mb-4 text-sm">Una guía clara para entender las bases de las criptomonedas y cómo navegar este espacio de forma segura.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="tag">Crypto</span>
-                            <span class="tag">Fintech</span>
-                        </div>
-                        <a href="https://youtube.com/watch?v=sample-video-id-1" target="_blank" rel="noopener" class="btn btn-secondary w-full text-center">Ver en YouTube</a> </div>
-                </div>
-            </div>
+            <div id="youtube-videos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div id="youtube-error" class="text-center text-red-400 mt-4"></div>
         </section>
 
         <section id="blog" class="py-12">
@@ -563,5 +524,41 @@
             });
         });
     </script>
+<script>
+// Script para obtener y mostrar los últimos videos de YouTube
+const YOUTUBE_API_KEY = 'AIzaSyDF7YAUWSr5-181Bi_Hlmj3IGjmvIgGhh8';
+const YOUTUBE_CHANNEL_ID = 'UCScHfd5xGCYSLPKirOb_psg'; // Usar el channel ID directamente
+
+async function fetchLatestVideos() {
+    const videosContainer = document.getElementById('youtube-videos');
+    const errorContainer = document.getElementById('youtube-error');
+    videosContainer.innerHTML = '';
+    errorContainer.textContent = '';
+
+    try {
+        // Llama a tu backend seguro en Vercel
+        const res = await fetch('/api/youtube-latest');
+        const data = await res.json();
+        if (!data.videos || data.videos.length === 0) {
+            throw new Error('No se encontraron videos largos recientes.');
+        }
+        data.videos.forEach(video => {
+            const iframe = `<div class="card">
+                <div class="video-placeholder">
+                    <iframe width="100%" height="225" src="https://www.youtube.com/embed/${video.id}" title="${video.title}" frameborder="0" allowfullscreen class="w-full h-full aspect-video rounded-md"></iframe>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-300">${video.title}</h3>
+                    <p class="text-gray-400 mb-4 text-sm">${video.description.substring(0, 90)}...</p>
+                    <a href="${video.url}" target="_blank" rel="noopener" class="btn btn-secondary w-full text-center">Ver en YouTube</a>
+                </div>
+            </div>`;
+            videosContainer.innerHTML += iframe;
+        });
+    } catch (err) {
+        errorContainer.textContent = 'Error cargando videos: ' + err.message;
+    }
+}
+</script>
 </body>
 </html>
